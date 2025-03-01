@@ -1,0 +1,38 @@
+{
+    "songs": [
+        {
+            "title": "BLUE",
+            "artist": "Yung Kai",
+            "year": 2023,
+            "file": "Blue Yung Kai - PagalWorld.mp3",
+            "background": "blue.jpg"
+        },
+        {
+            "title": "I WANNA BE YOURS",
+            "artist": "Arctic Monkeys",
+            "year": 2013,
+            "file": "Arctic Monkeys - I Wanna Be Yours.mp3",
+            "background": "wanna.jpg"
+        },
+        {
+            "title": "Strawberries & Cigarettes",
+            "artist": "Troye Sivan",
+            "year": 2018,
+            "file": "Troye Sivan-Strawberries & Cigarettes.mp3",
+            "background": "straw.jpg"
+        },
+        {
+            "title": "Heartless",
+            "artist": "Weeknd",
+            "file": "The Weeknd - Heartless.mp3",
+            "background": "heart.jpg"
+        },
+        {
+            "title": "Until I Found You",
+            "artist": "Stephen Sanchez",
+            "year": 2021,
+            "file": "Until I found You.mp3",
+            "background": "found.jpg"
+        }
+    ]
+}

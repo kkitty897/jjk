@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Maker App</title>
+    <link rel="stylesheet" href="cake.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Make Your Cake</h1>
+        <form id="cakeForm">
+            <label for="cakeType">Choose a cake type:</label>
+            <select id="cakeType" required>
+                <option value="">Select a type</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Vanilla">Vanilla</option>
+                <option value="Red Velvet">Red Velvet</option>
+                <option value="Carrot">Carrot</option>
+            </select>
+
+            <label for="frostingType">Choose a frosting:</label>
+            <select id="frostingType" required>
+                <option value="">Select a frosting</option>
+                <option value="Buttercream">Buttercream</option>
+                <option value="Cream Cheese">Cream Cheese</option>
+                <option value="Whipped Cream">Whipped Cream</option>
+                <option value="Ganache">Ganache</option>
+            </select>
+
+            <label for="toppings">Choose toppings:</label>
+            <select id="toppings" multiple>
+                <option value="Sprinkles">Sprinkles</option>
+                <option value="Cherries">Cherries</option>
+                <option value="Nuts">Nuts</option>
+                <option value="Chocolate Chips">Chocolate Chips</option>
+            </select>
+
+            <button type="submit">Create Cake</button>
+        </form>
+
+        <div id="cakeDisplay" class="hidden">
+            <h2>Your Cake</h2>
+            <div id="cakeSummary"></div>
+            <div id="cakeImage"></div>
+        </div>
+    </div>
+
+    <script src="cake.js"></script>
+</body>
+</html>

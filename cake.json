@@ -1,0 +1,53 @@
+const cakeImages = {
+    Chocolate: {
+        Sprinkles: 'chocolate-sprinkles.jpg', 
+        Cherries: 'chocolate-cherries.jpg',   
+        Nuts: 'choco-nuts.jpg',           
+        'Chocolate Chips': 'choco-chips.jpg' 
+    },
+    Vanilla: {
+        Sprinkles: 'van-sprinkles.jpg',   
+        Cherries: 'van-cherries.png',     
+        Nuts: 'van-nuts.jpg.crdownload',             
+        'Chocolate Chips': 'van-chips.png' 
+    },
+    'Red Velvet': {
+        Sprinkles: 'red-sprin.png', 
+        Cherries: 'red-cherr.jpg',   
+        Nuts: 'red-nuts.png',          
+        'Chocolate Chips': 'red-nuts.png' 
+    }
+};
+
+document.getElementById('cakeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const cakeType = document.getElementById('cakeType').value; 
+    const frostingType = document.getElementById('frostingType').value; 
+    const toppings = Array.from(document.getElementById('toppings').selectedOptions).map(option => option.value); // Get selected toppings
+
+    let summaryText = `You have created a ${cakeType} cake with ${frostingType} frosting.`;
+    if (toppings.length > 0) {
+        summaryText += ` Toppings: ${toppings.join(', ')}.`;
+    } else {
+        summaryText += ` No toppings selected.`;
+    }
+    document.getElementById('cakeSummary').innerText = summaryText; 
+
+    const cakeImage = document.getElementById('cakeImage');
+    cakeImage.innerHTML = ''; 
+
+    if (cakeImages[cakeType]) {
+        toppings.forEach(topping => {
+            if (cakeImages[cakeType][topping]) {
+                const cakeImg = document.createElement('img'); // Create an img element
+                cakeImg.src = cakeImages[cakeType][topping]; // Set the src to the corresponding image URL
+                cakeImg.alt = `${cakeType} Cake with ${topping}`; // Set the alt text
+                cakeImage.appendChild(cakeImg); // Append the image to the cakeImage div
+            }
+        });
+    }
+
+    // Show the cake display section
+    document.getElementById('cakeDisplay').classList.remove('hidden'); // Remove the hidden class to display the cake
+});

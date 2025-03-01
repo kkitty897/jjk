@@ -1,0 +1,124 @@
+/* Full-page background image */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('card') no-repeat center center/cover;
+    filter: blur(10px);
+    transition: filter 0.8s ease-in-out;
+    z-index: -1;
+}
+
+/* Birthday message container */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradientBG 6s infinite alternate ease-in-out;
+    overflow: hidden;
+}
+
+/* Smooth background gradient animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 1s ease-in-out;
+}
+
+/* Glowing and animated title */
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px #ffdd57; }
+    to { text-shadow: 0 0 20px #fff, 0 0 30px #ff5733; }
+}
+
+.message {
+    font-size: 1.4em;
+    margin: 15px 0;
+}
+
+/* Stylish button with hover effects */
+button {
+    background: linear-gradient(45deg, #ff4081, #ff6f61);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Surprise cake section */
+#surprise {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: none;
+}
+
+/* Jumping cake animation */
+#cake {
+    width: 220px;
+    animation: jump 1s infinite alternate ease-in-out;
+}
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+/* Full-screen surprise image */
+#surprise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('card') no-repeat center center/cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 10;
+    display: none;
+}
+
+/* Show surprise */
+#surprise-bg.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Blur effect when surprise is active */
+.blur {
+    filter: blur(8px);
+}

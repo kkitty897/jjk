@@ -1,0 +1,85 @@
+const audio = document.getElementById('audio');
+const playPauseButton = document.getElementById('play-pause');
+const volumeSlider = document.getElementById('volume');
+const currentTimeDisplay = document.getElementById('current-time');
+const durationDisplay = document.getElementById('duration');
+const nowPlayingDisplay = document.getElementById('now-playing');
+const playlistElement = document.getElementById('playlist');
+const body = document.body; // Reference to the body for background change
+
+let songs = [];
+let currentSongIndex = 0; // Track the current song index
+
+// Fetch songs from JSON file
+fetch('songs.json')
+    .then(response => response.json())
+    .then(data => {
+        songs = data.songs;
+        loadSong(currentSongIndex); // Load the first song initially
+        populatePlaylist();
+    })
+    .catch(error => console.error('Error loading songs:', error));
+
+// Load a song by index
+function loadSong(index) {
+    audio.src = songs[index].file;
+    nowPlayingDisplay.textContent = `Now Playing: ${songs[index].title}`;
+    body.style.backgroundImage = `url('${songs[index].background}')`; // Change background
+    audio.load();
+}
+
+// Populate the playlist
+function populatePlaylist() {
+    songs.forEach((song, index) => {
+        const li = document.createElement('li');
+        li.textContent = song.title;
+        li.addEventListener('click', () => {
+            currentSongIndex = index; // Update current song index
+            loadSong(currentSongIndex);
+            audio.play();
+            playPauseButton.textContent = 'Pause';
+        });
+        playlistElement.appendChild(li);
+    });
+}
+
+// Play/Pause button event listener
+playPauseButton.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'Pause';
+    } else {
+        audio.pause();
+        playPauseButton.textContent = 'Play';
+    }
+});
+
+// Volume control event listener
+volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+});
+
+// Update current time and duration when the audio is loaded
+audio.addEventListener('loadedmetadata', () => {
+    durationDisplay.textContent = formatTime(audio.duration);
+});
+
+// Update current time display as the audio plays
+audio.addEventListener('timeupdate', () => {
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+});
+
+// Automatically play the next song when the current one ends
+audio.addEventListener('ended', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
+    loadSong(currentSongIndex);
+    audio.play();
+    playPauseButton.textContent = 'Pause';
+});
+
+// Format time in minutes and seconds
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+}
